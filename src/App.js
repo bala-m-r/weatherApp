@@ -20,14 +20,9 @@ function App() {
     try {
       const response = await fetch(`${API_URL}?key=${API_KEY}&q=${encodeURIComponent(cityName)}`);
       
-      if (!response.ok) {
-        throw new Error('Failed to fetch weather data');
-      }
-
       const data = await response.json();
       
-      // Check if API returned an error in the response
-      if (data.error || !data.current) {
+      if (!response.ok || data.error || !data.current) {
         throw new Error('Failed to fetch weather data');
       }
       
@@ -78,7 +73,7 @@ function App() {
           </div>
           <div className="weather-card">
             <h3>Condition</h3>
-            <p className="weather-value">{weatherData.current.condition?.text || 'N/A'}</p>
+            <p className="weather-value">{weatherData.current.condition && weatherData.current.condition.text ? weatherData.current.condition.text : 'N/A'}</p>
           </div>
           <div className="weather-card">
             <h3>Wind Speed</h3>
