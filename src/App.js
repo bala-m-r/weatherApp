@@ -6,7 +6,7 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = 'Your_API_KEY'; // Replace with your actual API key from https://www.weatherapi.com/
+  const API_KEY = 'cb83c7be79944b49a1d183421250112'; // Replace with your actual API key from https://www.weatherapi.com/
   const API_URL = 'https://api.weatherapi.com/v1/current.json';
 
   const handleSearch = async () => {
