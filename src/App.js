@@ -27,7 +27,7 @@ function App() {
       const data = await response.json();
       
       // Check if API returned an error in the response
-      if (data.error) {
+      if (data.error || !data.current) {
         throw new Error('Failed to fetch weather data');
       }
       
@@ -66,7 +66,7 @@ function App() {
         {loading && <p className="loading-message">Loading data...</p>}
       </div>
 
-      {weatherData && (
+      {weatherData && weatherData.current && (
         <div className="weather-cards">
           <div className="weather-card">
             <h3>Temperature</h3>
@@ -78,7 +78,7 @@ function App() {
           </div>
           <div className="weather-card">
             <h3>Condition</h3>
-            <p className="weather-value">{weatherData.current.condition.text}</p>
+            <p className="weather-value">{weatherData.current.condition?.text || 'N/A'}</p>
           </div>
           <div className="weather-card">
             <h3>Wind Speed</h3>
